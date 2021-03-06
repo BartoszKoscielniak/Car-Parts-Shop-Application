@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="parent" focusTraversable="true" prefHeight="720.0" prefWidth="1280.0" styleClass="sidebar2" stylesheets="@../stylesheet/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MainScene_Controller">
+   <children>
+      <AnchorPane fx:id="parent2" layoutX="44.0" layoutY="17.0" prefWidth="231.0" styleClass="sidebar" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1050.0" AnchorPane.topAnchor="30.0">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" text="Zalogowany pracownik:" textFill="WHITE">
+               <font>
+                  <Font name="Garamond Bold" size="21.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="220.0" onMouseClicked="#shopButton" prefHeight="44.0" prefWidth="95.0" styleClass="bttn" text="Katalog" textFill="WHITE">
+               <font>
+                  <Font name="Garamond Bold" size="28.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label fx:id="obecnieZalogowany" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" text="-" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Garamond Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="264.0" onMouseClicked="#workersButton" prefHeight="34.0" prefWidth="141.0" styleClass="bttn" text="Pracownicy" textFill="WHITE">
+               <font>
+                  <Font name="Garamond Bold" size="28.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label layoutX="75.0" layoutY="352.0" onMouseClicked="#cartButton" prefHeight="0.0" prefWidth="141.0" styleClass="bttn" text="Księgowość" textFill="WHITE">
+               <font>
+                  <Font name="Garamond Bold" size="28.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label layoutX="75.0" layoutY="396.0" onMouseClicked="#currentWorkerButton" prefHeight="0.0" prefWidth="147.0" styleClass="bttn" text="Zarządzanie" textFill="WHITE">
+               <font>
+                  <Font name="Garamond Bold" size="28.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </Label>
+            <Label layoutX="75.0" layoutY="308.0" onMouseClicked="#branchButton" prefHeight="0.0" prefWidth="110.0" styleClass="bttn" text="Oddziały" textFill="WHITE">
+               <font>
+                  <Font name="Garamond Bold" size="28.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" top="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fx:id="img" fitHeight="354.0" fitWidth="502.0" layoutX="246.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/warehouse-euclidean-vector-logistics-vector-warehouse-truck-384f012a7eaffd5536fb8fedef88b657.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="witajTekst" layoutX="863.0" layoutY="195.0" text="Witaj!">
+         <font>
+            <Font name="Garamond Bold" size="100.0" />
+         </font>
+      </Label>
+      <Label fx:id="oddzialWTekst" layoutX="673.0" layoutY="360.0" text="Oddział: ">
+         <font>
+            <Font name="Garamond Bold" size="48.0" />
+         </font>
+      </Label>
+      <Label fx:id="nazwaOddzialu" alignment="CENTER" layoutX="863.0" layoutY="360.0" prefHeight="44.0" prefWidth="249.0" text="Label">
+         <font>
+            <Font name="Garamond Bold" size="48.0" />
+         </font></Label>
+   </children>
+</AnchorPane>

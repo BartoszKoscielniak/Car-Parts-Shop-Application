@@ -1,0 +1,66 @@
+.parent {
+    -fx-background-color: #fff;
+}
+.sidebar {
+    -fx-background-color: #1990ea;
+    -fx-background-radius: 0px 50px 50px 0px;
+}
+.sidebar2 {
+    -fx-background-color: #fcfbfc;
+}
+.sidebar3 {
+    -fx-background-color: #a1b3c1;
+    -fx-background-radius: 10px 10px 10px 10px;
+}
+
+.bttn {
+    -fx-background-color: transparent;
+}
+.bttn:hover{
+    -fx-background-color: #fcfbfc;
+    -fx-background-radius: 10px 10px 10px 10px;
+    -fx-text-fill: #000000;
+}
+
+
+.closeBtn{
+    -fx-fill: #545454;
+}
+.closeBtn:hover{
+    -fx-fill: #ff6666;
+}
+
+.login{
+    -fx-background-color: linear-gradient(#27217d, #69438a);
+}
+
+.zalogujBttn{
+   -fx-background-color: #69438a;
+   -fx-text-fill: #FFF;
+   -fx-background-radius: 5px;
+
+}
+.zalogujBttn:hover{
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFF;
+    -fx-background-radius: 5px;
+    -fx-border-color: #FFF;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-radius: 5px;
+}
+
+.forgetBttn{
+    -fx-text-fill: #ffffff;
+}
+.forgetBttn:hover{
+    -fx-text-fill: #69438a;
+}
+
+.txtFields{
+    -fx-background-color: transparent;
+    -fx-text-fill: #FFF;
+    -fx-border-color: #FFF;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-style: solid;
+}

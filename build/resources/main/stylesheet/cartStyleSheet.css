@@ -1,0 +1,89 @@
+.txtFieldsInCart{
+    -fx-background-color: transparent;
+    -fx-text-fill: #fcfbfc;
+        -fx-border-color: #fcfbfc;
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-border-style: solid;
+}
+.txtFieldPodsumowanieCeny{
+    -fx-background-color: transparent;
+    -fx-text-fill: #3a3d50;
+     -fx-border-color: #3a3d50;
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-border-style: solid;
+}
+.txtFieldsInViews{
+    -fx-background-color: transparent;
+    -fx-text-fill: #000000;
+        -fx-border-color: #1990ea;
+    -fx-border-width: 1px 1px 1px 1px;
+    -fx-border-style: solid;
+}
+.bttnZrealizuj {
+    -fx-background-color: #3a3d50;
+    -fx-text-fill: #fcfbfc;
+}
+
+.tableview{
+   -fx-background-color: transparent;
+   /*-fx-box-border:*/
+   -fx-border-insets: -1 -1 0 0;
+}
+.table-view .column-header .label{
+   -fx-text-fill: #000000;
+   -fx-font-weight: bold;
+   -fx-text-font: 20px Garamond;
+   -fx-alignment: CENTER;
+}
+.table-view .cell{
+   -fx-cell-size: 65;
+  -fx-alignment: center;
+  -fx-background-color: #fcfbfc;
+  -fx-border-color: #fcfbfc;
+  -fx-text-fill: #000000;
+  -fx-alignment: CENTER;
+  -fx-text-font: 20px Garamond;
+
+}
+.table-view .increment-button ,.table-view .decrement-button {
+    -fx-background-color:transparent;
+	-fx-background-radius: 2em;
+
+}
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #a1b3c1;
+	-fx-background-insets: 2, 0, 0;
+	-fx-background-radius: 1em;
+
+}
+
+.table-view .scroll-bar:vertical .track{
+	-fx-background-color: transparent;
+	-fx-border-color: #a1b3c1;
+	-fx-background-radius: 1em;
+	-fx-border-radius:1em;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-button,
+.table-view *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: #fcfbfc;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.table-view *.scroll-bar:horizontal *.increment-arrow,
+.table-view *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: #fcfbfc;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+.choice-box {
+  -fx-background-color: transparent;
+  -fx-border-color: #000000;
+  -fx-mark-color: #000000;
+}
