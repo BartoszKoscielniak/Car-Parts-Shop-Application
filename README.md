@@ -30,28 +30,52 @@ Start application twice so it is ready to use.
 Show examples of usage:
 
 
-                            @Override
-                            public void updateItem(String item, boolean empty) {
-                                super.updateItem(item, empty);
-                                if (empty) {
-                                    setGraphic(null);
-                                    setText(null);
-                                } else {
-                                    CarParts carParts = getTableView().getItems( ).get( getIndex());
-                                    CarParts temp = session.get( CarParts.class, carParts.getId_part() );
-                                    setText( temp.getKategoria().getCategory_name() );
-                                }
-                            }
-                        };
-                        return cell;
-                    }
-                };
+            @Override
+            public void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                    setText(null);
+                } else {
+                    CarParts carParts = getTableView().getItems( ).get( getIndex());
+                    CarParts temp = session.get( CarParts.class, carParts.getId_part() );
+                    setText( temp.getKategoria().getCategory_name() );
+                }
+            }
+        };
+        return cell;
+    } };
+
+           public Session getSession() {
+                Configuration configuration =new Configuration().configure("hibernate.cfg.xml");
+                configuration.addAnnotatedClass(CarParts.class);
+                configuration.addAnnotatedClass(Category.class);
+                configuration.addAnnotatedClass(Shop.class);
+                configuration.addAnnotatedClass(Workers.class);
+                configuration.addAnnotatedClass(Order.class);
+                ServiceRegistry serviceRegistry =new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+                SessionFactory factory = configuration.buildSessionFactory(serviceRegistry);
+                Session session = factory.openSession();
+        
+                return session;
+    }
+
+            addButton.setOnAction(event -> {
+                if(!insertPrice.getText().isEmpty() || !insertAmount.getText().isEmpty() || !insertName.getText().isEmpty() || !insertSerialNumber.getText().isEmpty()){
+                    Transaction transaction = session.beginTransaction();
+                    CarParts tempCze = new CarParts( insertName.getText(), Long.parseLong( insertSerialNumber.getText() ), Float.parseFloat( insertPrice.getText() ), Integer.parseInt( insertAmount.getText() ), "Dostepny" );
+                    Category tempKat = session.get( Category.class, category.get( chooseCategory.getSelectionModel().getSelectedIndex() ).getId_cat());
+                    tempCze.setKategoria( tempKat );
+                    session.save( tempCze  );
+                    transaction.commit();
+    } } );
+
 
 
 ##Tech/framework used
 
 * Java 15
-* Hibernate
+* Hibernate 5.4.25.Final
 * CSS
 * MYSQL
 
