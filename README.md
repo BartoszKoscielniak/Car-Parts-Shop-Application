@@ -21,7 +21,7 @@
 
 ## Setup
 
->Instalation of project is as simple as using it. All you had to do is download it and start with IDE in my case **IntelliJ**.
+>Instalation of project is as simple as using it. All you had to do is download it and start with IDE, in my case **IntelliJ**.
 To start application properly you need also to download database server, mine was [MySQL Community Server](https://dev.mysql.com/downloads/mysql/), and properly configure it.
 After configuration you need to create database **carpartsshop**.
 Start application twice so it is ready to use.
@@ -47,6 +47,7 @@ Show examples of usage:
                     }
                 };
 
+
 ##Tech/framework used
 
 * Java 15
@@ -60,6 +61,7 @@ Project is: _in progress_ :monocle_face:
 
 ## Contact
 Created by [@Bartosz Koscielniak](https://github.com/BartoszKoscielniak) - feel free to contact me! :+1:
+
 
 ##License
 [MIT](https://choosealicense.com/licenses/mit/) ©
