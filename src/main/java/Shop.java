@@ -33,16 +33,8 @@ public class Shop implements Serializable {
         return id_shop;
     }
 
-    public void setId_shop(int id_sklepu ) {
-        this.id_shop = id_sklepu;
-    }
-
     public String getCity() {
         return city;
-    }
-
-    public void setCity(String miejscowosc ) {
-        this.city = miejscowosc;
     }
 
     public double getTurnover() {
@@ -53,16 +45,8 @@ public class Shop implements Serializable {
         this.turnover = obrot;
     }
 
-    public static long getSerialVersionUID () {
-        return serialVersionUID;
-    }
-
-    public List<Workers> getPracownik () {
+    public List<Workers> getWorker() {
         return workersList;
-    }
-
-    public void setPracownik ( List<Workers> workers) {
-        workersList = workers;
     }
 
     @Override

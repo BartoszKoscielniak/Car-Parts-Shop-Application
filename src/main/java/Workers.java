@@ -56,10 +56,6 @@ public class Workers implements Serializable {
         return id_worker;
     }
 
-    public void setId_worker(int id_prac ) {
-        this.id_worker = id_prac;
-    }
-
     public String getName() {
         return name;
     }
@@ -72,51 +68,27 @@ public class Workers implements Serializable {
         return surname;
     }
 
-    public void setSurname(String nazwisko ) {
-        this.surname = nazwisko;
-    }
-
     public String getDateOfEmployment() {
         return dateOfEmployment;
-    }
-
-    public void setDateOfEmployment(String data_zatrudnienia ) {
-        this.dateOfEmployment = data_zatrudnienia;
     }
 
     public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long nr_telefonu ) {
-        this.phoneNumber = nr_telefonu;
-    }
-
     public long getPesel () {
         return pesel;
-    }
-
-    public void setPesel ( long pesl ) {
-        this.pesel = pesl;
     }
 
     public double getEarings() {
         return earings;
     }
 
-    public void setEarings(double zarobki ) {
-        this.earings = zarobki;
-    }
-
-    public static long getSerialVersionUID () {
-        return serialVersionUID;
-    }
-
-    public Shop getSklep () {
+    public Shop getShop() {
         return shop;
     }
 
-    public void setSklep ( Shop shop) {
+    public void setShop(Shop shop) {
         this.shop = shop;
     }
 

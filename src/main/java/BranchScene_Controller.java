@@ -128,7 +128,7 @@ public class BranchScene_Controller implements Initializable {
                                 } else {
                                     Shop shop1 = getTableView().getItems( ).get( getIndex());
                                             btn.setOnAction( event -> {
-                                                if(shop1.getPracownik().isEmpty()){
+                                                if(shop1.getWorker().isEmpty()){
                                                     Transaction transaction = session.beginTransaction( );
                                                     Query query = session.createQuery( "DELETE FROM Shop WHERE id_shop ='" + shop1.getId_shop( ) + "'" );
                                                     query.executeUpdate( );
@@ -171,7 +171,7 @@ public class BranchScene_Controller implements Initializable {
                                     int i = 0;
                                     int temp = 0;
                                     while(i < workersList.size()){
-                                        if(workersList.get( i ).getSklep().getId_shop() == shop1.getId_shop()){
+                                        if(workersList.get( i ).getShop().getId_shop() == shop1.getId_shop()){
                                             temp++;
                                         }
                                         i++;

@@ -234,7 +234,7 @@ public class WorkersScene_Controller implements Initializable {
                                 } else {
                                     Workers temp = getTableView().getItems( ).get( getIndex());
                                     Workers temp1 = session.get( Workers.class,temp.getId_worker() );
-                                    setText( temp1.getSklep().getCity() );
+                                    setText( temp1.getShop().getCity() );
                                 }
                             }
                         };
@@ -269,7 +269,7 @@ public class WorkersScene_Controller implements Initializable {
                     Transaction transaction = session.beginTransaction();
                     Workers tempPrac = new Workers( insertName.getText(), insertSurname.getText(),date, Long.parseLong( insertPhoneNumber.getText()), Long.parseLong( insertPesel.getText() ), Double.parseDouble( insertEarings.getText() ) );
                     Shop tempSkl = session.get( Shop.class, oddzial.get(branchList.getSelectionModel().getSelectedIndex()).getId_shop() );
-                    tempPrac.setSklep( tempSkl );
+                    tempPrac.setShop( tempSkl );
                     session.save( tempPrac );
                     transaction.commit();
                     loadData( );

@@ -193,9 +193,9 @@ public class ShopScene_Controller implements Initializable {
                                                     Order tempZam = session.get( Order.class , orderList.get( i ).getId_order( ) );
                                                     CarParts tempCze = session.get( CarParts.class , czesctemp.getId_part( ) );
                                                     int ilosc_czesci = tempCze.getAmount( );
-                                                    List<CarParts> tempList = tempZam.getCzescSamochodowa( );
+                                                    List<CarParts> tempList = tempZam.getCarParts( );
                                                     tempList.add( tempCze );
-                                                    tempZam.setCzescSamochodowa( tempList );
+                                                    tempZam.setCarParts( tempList );
                                                     Transaction transaction = session.beginTransaction( );
                                                     tempCze.setAmount( ilosc_czesci - 1 );
                                                     session.save( tempZam );
@@ -240,7 +240,7 @@ public class ShopScene_Controller implements Initializable {
             Workers tempPrac = session.get( Workers.class,loginScene_controller.getLoggedInWorkerID() );
             Order temp = new Order(  );
             temp.setIfCompleted( "Niezrealizowane" );
-            temp.setPracownik( tempPrac );
+            temp.setWorker( tempPrac );
             Transaction transaction = session.beginTransaction();
             session.save( temp );
             transaction.commit();

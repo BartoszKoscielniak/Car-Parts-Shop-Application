@@ -77,6 +77,6 @@ public class MainScene_Controller implements Initializable {
         public void setCurrentlyLoggedIn() {
                 Workers temp = session.get( Workers.class,LoginScene_Controller.getLoggedInWorkerID() );
                 currentlyLoggedIn.setText( LoginScene_Controller.getNameTemp() + " " + LoginScene_Controller.getSurnameTemp() );
-                branchName.setText( temp.getSklep().getCity() );
+                branchName.setText( temp.getShop().getCity() );
         }
 }

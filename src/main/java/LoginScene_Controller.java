@@ -69,7 +69,7 @@ public class LoginScene_Controller implements Initializable {
             Workers workers = new Workers( "Kamil" , "qwe" , "06-06-2020" , 519344934 , 123 , 3000 );
             Shop shop = new Shop( "Warszawa" , 0 );
             Transaction transaction = session.beginTransaction( );
-            workers.setSklep(shop);
+            workers.setShop(shop);
             session.save(workers);
             session.save(shop);
             transaction.commit( );

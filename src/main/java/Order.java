@@ -35,46 +35,18 @@ public class Order implements Serializable {
     )
     List<CarParts> CarParts = new ArrayList<>();
 
-    public Order(String ifCompleted) {
-
-    }
-
     public Order(){}
 
     public int getId_order() {
         return id_order;
     }
 
-    public void setId_order(int id_zamowienia ) {
-        this.id_order = id_zamowienia;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float cena ) {
-        this.price = cena;
-    }
-
-    public int getOrdinal_number() {
-        return ordinal_number;
-    }
-
-    public void setOrdinal_number(int nr_zamowienia ) {
-        this.ordinal_number = nr_zamowienia;
-    }
-
-    public Workers getPracownik () {
+    public Workers getWorker() {
         return workers;
     }
 
-    public void setPracownik ( Workers workers) {
+    public void setWorker(Workers workers) {
         this.workers = workers;
-    }
-
-    public static long getSerialVersionUID () {
-        return serialVersionUID;
     }
 
     public String getIfCompleted() {
@@ -85,11 +57,11 @@ public class Order implements Serializable {
         this.ifCompleted = zrealizowano;
     }
 
-    public List<CarParts> getCzescSamochodowa () {
+    public List<CarParts> getCarParts() {
         return CarParts;
     }
 
-    public void setCzescSamochodowa ( List<CarParts> carParts) {
+    public void setCarParts(List<CarParts> carParts) {
         CarParts = carParts;
     }
 }

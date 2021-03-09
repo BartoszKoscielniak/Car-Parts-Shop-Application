@@ -113,7 +113,7 @@ public class Cart_Controller implements Initializable {
 
         public void loadData(int id_zam){
                 Order order = session.get( Order.class, id_zam );
-                List<CarParts> resultList = order.getCzescSamochodowa();
+                List<CarParts> resultList = order.getCarParts();
                 ObservableList<CarParts> data = FXCollections.observableList(resultList);
                 cart_table.setItems( data );
                 initCols();
@@ -139,10 +139,10 @@ public class Cart_Controller implements Initializable {
                         int id_zam = chooseOrder.getSelectionModel().getSelectedIndex() + 1;
                         loadData( id_zam );
                         Order temp = session.get( Order.class,id_zam );
-                        showWorker.setText( temp.getPracownik().getName() + " " + temp.getPracownik().getSurname() );
-                        showBranch.setText( temp.getPracownik().getSklep().getCity() );
+                        showWorker.setText( temp.getWorker().getName() + " " + temp.getWorker().getSurname() );
+                        showBranch.setText( temp.getWorker().getShop().getCity() );
                         invoiceNumber.setText( String.valueOf( id_zam ) );
-                        List<CarParts> kosztCalkowityList = temp.getCzescSamochodowa();
+                        List<CarParts> kosztCalkowityList = temp.getCarParts();
                         int a = 0;
                         float kosztCalkowity = 0;
                         while(a < kosztCalkowityList.size()){
@@ -153,7 +153,7 @@ public class Cart_Controller implements Initializable {
                         priceSummary.setText( String.valueOf( "Podsumowanie: " + kosztCalkowity + " zl" ) );
                         realizeButton.setOnAction(event1 -> {
                                 if(!temp.getIfCompleted().equals( "Zrealizowano" )){
-                                        Shop tempShop = session.get( Shop.class, temp.getPracownik().getSklep().getId_shop() );
+                                        Shop tempShop = session.get( Shop.class, temp.getWorker().getShop().getId_shop() );
                                         Transaction transaction = session.beginTransaction( );
                                         temp.setIfCompleted( "Zrealizowano" );
                                         tempShop.setTurnover( (tempShop.getTurnover() + obrot) );

@@ -29,24 +29,8 @@ public class Category implements Serializable {
         return id_cat;
     }
 
-    public void setId_cat(int id_kat ) {
-        this.id_cat = id_kat;
-    }
-
     public String getCategory_name() {
         return category_name;
-    }
-
-    public void setCategory_name(String nazwa_kategorii ) {
-        this.category_name = nazwa_kategorii;
-    }
-
-    public List<CarParts> getCzescSamochodowaList () {
-        return carPartsList;
-    }
-
-    public void setCzescSamochodowaList ( List<CarParts> carPartsList) {
-        this.carPartsList = carPartsList;
     }
 
     @Override
