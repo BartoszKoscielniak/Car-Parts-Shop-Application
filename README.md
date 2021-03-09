@@ -47,8 +47,7 @@ Show examples of usage:
                     }
                 };
 
-
-##Tech/framework used
+## Tech/framework used
 
 * Java 15
 * Hibernate
@@ -63,6 +62,6 @@ Project is: _in progress_ :monocle_face:
 Created by [@Bartosz Koscielniak](https://github.com/BartoszKoscielniak) - feel free to contact me! :+1:
 
 
-##License
+## License
 [MIT](https://choosealicense.com/licenses/mit/) ©
 
