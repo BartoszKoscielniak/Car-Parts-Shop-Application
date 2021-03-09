@@ -30,58 +30,58 @@ public class WorkersScene_Controller implements Initializable {
     Alert alert = new Alert( Alert.AlertType.ERROR );
 
     @FXML
-    private TableView<Pracownik> workerTableView;
+    private TableView<Workers> workerTableView;
 
     @FXML
-    private TableColumn<Pracownik, String> imie_col;
+    private TableColumn<Workers, String> name_col;
 
     @FXML
-    private TableColumn<Pracownik, String> nazwisko_col;
+    private TableColumn<Workers, String> surname_col;
 
     @FXML
-    private TableColumn<Pracownik, DateCell> data_col;
+    private TableColumn<Workers, DateCell> date_col;
 
     @FXML
-    private TableColumn<Pracownik, Integer> telefon_col;
+    private TableColumn<Workers, Integer> phoneNumber_col;
 
     @FXML
-    private TableColumn<Pracownik, Integer> pesel_col;
+    private TableColumn<Workers, Integer> pesel_col;
 
     @FXML
-    private TableColumn<Pracownik, Integer> zarobki_col;
+    private TableColumn<Workers, Integer> earings_col;
 
     @FXML
-    private TableColumn<Pracownik, String> miejscowosc_col;
+    private TableColumn<Workers, String> city_col;
 
     @FXML
-    private TableColumn<Pracownik, String> usunButton_col;
+    private TableColumn<Workers, String> deleteButton_col;
 
     @FXML
-    private Label obecnieZalogowany;
+    private Label currentlyLoggedIn;
 
     @FXML
-    private DatePicker insertDataUrodzenia;
+    private DatePicker insertDateOfBirth;
 
     @FXML
-    private Button dodajButton;
+    private Button addButton;
 
     @FXML
-    private ChoiceBox<String> oddzialList;
+    private ChoiceBox<String> branchList;
 
     @FXML
-    private TextField insertImie;
+    private TextField insertName;
 
     @FXML
-    private TextField insertNazwisko;
+    private TextField insertSurname;
 
     @FXML
-    private TextField insertNrTele;
+    private TextField insertPhoneNumber;
 
     @FXML
     private TextField insertPesel;
 
     @FXML
-    private TextField insertZarobki;
+    private TextField insertEarings;
 
     @FXML
     void branchButton( MouseEvent event) throws IOException {
@@ -138,19 +138,19 @@ public class WorkersScene_Controller implements Initializable {
     }
 
     public void initCols() {
-        imie_col.setCellValueFactory( new PropertyValueFactory<Pracownik,String>( "Imie" ) );
-        nazwisko_col.setCellValueFactory( new PropertyValueFactory<Pracownik,String>( "Nazwisko" ) );
-        telefon_col.setCellValueFactory( new PropertyValueFactory<Pracownik,Integer>( "Nr_telefonu" ) );
-        pesel_col.setCellValueFactory( new PropertyValueFactory<Pracownik,Integer>( "Pesel" ) );
-        zarobki_col.setCellValueFactory( new PropertyValueFactory<Pracownik,Integer>( "Zarobki" ) );
+        name_col.setCellValueFactory( new PropertyValueFactory<Workers,String>( "name" ) );
+        surname_col.setCellValueFactory( new PropertyValueFactory<Workers,String>( "surname" ) );
+        phoneNumber_col.setCellValueFactory( new PropertyValueFactory<Workers,Integer>( "phoneNumber" ) );
+        pesel_col.setCellValueFactory( new PropertyValueFactory<Workers,Integer>( "Pesel" ) );
+        earings_col.setCellValueFactory( new PropertyValueFactory<Workers,Integer>( "earings" ) );
 
-        Callback<TableColumn<Pracownik, String>, TableCell<Pracownik, String>> cellFactory
+        Callback<TableColumn<Workers, String>, TableCell<Workers, String>> cellFactory
                 = //
-                new Callback<TableColumn<Pracownik, String>, TableCell<Pracownik, String>>() {
+                new Callback<TableColumn<Workers, String>, TableCell<Workers, String>>() {
 
                     @Override
-                    public TableCell call(final TableColumn<Pracownik, String> param) {
-                        final TableCell<Pracownik, String> cell = new TableCell<Pracownik, String>() {
+                    public TableCell call(final TableColumn<Workers, String> param) {
+                        final TableCell<Workers, String> cell = new TableCell<Workers, String>() {
 
                             final Button btn = new Button("Usun");
 
@@ -163,12 +163,12 @@ public class WorkersScene_Controller implements Initializable {
                                 } else {
 
                                     btn.setOnAction(event -> {
-                                        Pracownik pracownik = getTableView().getItems().get(getIndex());
+                                        Workers workers = getTableView().getItems().get(getIndex());
                                         LoginScene_Controller loginScene_controller = new LoginScene_Controller();
-                                        if(!(loginScene_controller.getIdZalogowanegoPracownika() == pracownik.getId_prac())){
+                                        if(!(loginScene_controller.getLoggedInWorkerID() == workers.getId_worker())){
 
                                                 Transaction transaction = session.beginTransaction();
-                                                Query query = session.createQuery( "DELETE FROM Pracownik WHERE id_prac ='" + pracownik.getId_prac( ) + "'" );
+                                                Query query = session.createQuery( "DELETE FROM Workers WHERE id_worker ='" + workers.getId_worker( ) + "'" );
                                                 query.executeUpdate( );
                                                 transaction.commit();
                                                 loadData( );
@@ -188,12 +188,12 @@ public class WorkersScene_Controller implements Initializable {
                     }
                 };
 
-        Callback<TableColumn<Pracownik, DateCell>, TableCell<Pracownik, DateCell>> datePickerFactory
+        Callback<TableColumn<Workers, DateCell>, TableCell<Workers, DateCell>> datePickerFactory
                 = //
-                new Callback<TableColumn<Pracownik, DateCell>, TableCell<Pracownik, DateCell>>() {
+                new Callback<TableColumn<Workers, DateCell>, TableCell<Workers, DateCell>>() {
                     @Override
-                    public TableCell call(final TableColumn<Pracownik, DateCell> param) {
-                        final TableCell<Pracownik, String> cell = new TableCell<Pracownik, String>() {
+                    public TableCell call(final TableColumn<Workers, DateCell> param) {
+                        final TableCell<Workers, String> cell = new TableCell<Workers, String>() {
                             final DatePicker datePicker = new DatePicker(  );
 
                             @Override
@@ -203,10 +203,10 @@ public class WorkersScene_Controller implements Initializable {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
-                                    Pracownik pracownik = getTableView().getItems().get(getIndex());
-                                    Pracownik temp = session.get( Pracownik.class,pracownik.getId_prac() );
+                                    Workers workers = getTableView().getItems().get(getIndex());
+                                    Workers temp = session.get( Workers.class, workers.getId_worker() );
                                     DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-                                    LocalDate localDate = LocalDate.parse(temp.getData_zatrudnienia(), dateTimeFormatter);
+                                    LocalDate localDate = LocalDate.parse(temp.getDateOfEmployment(), dateTimeFormatter);
                                     datePicker.setValue( localDate);
                                     datePicker.setEditable( false );
                                     setGraphic(datePicker);
@@ -218,12 +218,12 @@ public class WorkersScene_Controller implements Initializable {
                     }
                 };
 
-        Callback<TableColumn<Pracownik, String>, TableCell<Pracownik, String>> miejscowoscCellFactory
+        Callback<TableColumn<Workers, String>, TableCell<Workers, String>> cityCellFactory
                 = //
-                new Callback<TableColumn<Pracownik, String>, TableCell<Pracownik, String>>() {
+                new Callback<TableColumn<Workers, String>, TableCell<Workers, String>>() {
                     @Override
-                    public TableCell call(final TableColumn<Pracownik, String> param) {
-                        final TableCell<Pracownik, String> cell = new TableCell<Pracownik, String>() {
+                    public TableCell call(final TableColumn<Workers, String> param) {
+                        final TableCell<Workers, String> cell = new TableCell<Workers, String>() {
 
                             @Override
                             public void updateItem(String item, boolean empty) {
@@ -232,9 +232,9 @@ public class WorkersScene_Controller implements Initializable {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
-                                    Pracownik temp = getTableView().getItems( ).get( getIndex());
-                                    Pracownik temp1 = session.get( Pracownik.class,temp.getId_prac() );
-                                    setText( temp1.getSklep().getMiejscowosc() );
+                                    Workers temp = getTableView().getItems( ).get( getIndex());
+                                    Workers temp1 = session.get( Workers.class,temp.getId_worker() );
+                                    setText( temp1.getSklep().getCity() );
                                 }
                             }
                         };
@@ -243,32 +243,32 @@ public class WorkersScene_Controller implements Initializable {
                 };
 
 
-        data_col.setCellFactory(datePickerFactory);
-        miejscowosc_col.setCellFactory(miejscowoscCellFactory);
-        usunButton_col.setCellFactory(cellFactory);
+        date_col.setCellFactory(datePickerFactory);
+        city_col.setCellFactory(cityCellFactory);
+        deleteButton_col.setCellFactory(cellFactory);
     }
 
     public void loadData(){
-        List<Pracownik> results = session.createQuery( "From Pracownik" ).getResultList();
-        ObservableList<Pracownik> data = FXCollections.observableArrayList(results);
+        List<Workers> results = session.createQuery( "From Workers" ).getResultList();
+        ObservableList<Workers> data = FXCollections.observableArrayList(results);
         workerTableView.setItems(data);
     }
 
     public void addNewWorker(){
-        List<Sklep> oddzial = session.createQuery( "FROM Sklep" ).getResultList();
-        ObservableList<Sklep> oddzialObservableList = FXCollections.observableArrayList(oddzial);
+        List<Shop> oddzial = session.createQuery( "FROM Shop" ).getResultList();
+        ObservableList<Shop> oddzialObservableList = FXCollections.observableArrayList(oddzial);
         int i = 0;
         while(i < oddzialObservableList.size()) {
-            oddzialList.getItems( ).add( oddzialObservableList.get( i ).getMiejscowosc() );
+            branchList.getItems( ).add( oddzialObservableList.get( i ).getCity() );
             i++;
         }
-            dodajButton.setOnAction( event -> {
+            addButton.setOnAction(event -> {
 
-                if(!insertImie.getText().isEmpty() && !insertNazwisko.getText().isEmpty() && !insertNrTele.getText().isEmpty() && !insertPesel.getText().isEmpty() && !insertZarobki.getText().isEmpty() && insertDataUrodzenia.getValue() != null && oddzialList.getValue() != null){
-                    String date = insertDataUrodzenia.getValue( ).format( DateTimeFormatter.ofPattern( "dd-MM-yyyy" ) );
+                if(!insertName.getText().isEmpty() && !insertSurname.getText().isEmpty() && !insertPhoneNumber.getText().isEmpty() && !insertPesel.getText().isEmpty() && !insertEarings.getText().isEmpty() && insertDateOfBirth.getValue() != null && branchList.getValue() != null){
+                    String date = insertDateOfBirth.getValue( ).format( DateTimeFormatter.ofPattern( "dd-MM-yyyy" ) );
                     Transaction transaction = session.beginTransaction();
-                    Pracownik tempPrac = new Pracownik( insertImie.getText(), insertNazwisko.getText(),date, Long.parseLong( insertNrTele.getText()), Long.parseLong( insertPesel.getText() ), Double.parseDouble( insertZarobki.getText() ) );
-                    Sklep tempSkl = session.get( Sklep.class, oddzial.get(oddzialList.getSelectionModel().getSelectedIndex()).getId_sklepu() );
+                    Workers tempPrac = new Workers( insertName.getText(), insertSurname.getText(),date, Long.parseLong( insertPhoneNumber.getText()), Long.parseLong( insertPesel.getText() ), Double.parseDouble( insertEarings.getText() ) );
+                    Shop tempSkl = session.get( Shop.class, oddzial.get(branchList.getSelectionModel().getSelectedIndex()).getId_shop() );
                     tempPrac.setSklep( tempSkl );
                     session.save( tempPrac );
                     transaction.commit();
@@ -282,7 +282,7 @@ public class WorkersScene_Controller implements Initializable {
 
     public void  currentlyLogged() {
         LoginScene_Controller loginScene_controller = new LoginScene_Controller();
-        obecnieZalogowany.setText( loginScene_controller.getImietemp() + " " + loginScene_controller.getNazwiskotemp() );
+        currentlyLoggedIn.setText( loginScene_controller.getNameTemp() + " " + loginScene_controller.getSurnameTemp() );
     }
 
 }

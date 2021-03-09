@@ -17,7 +17,7 @@
             <DropShadow />
          </effect>
          <children>
-            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" text="Zalogowany pracownik:" textFill="WHITE">
+            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" text="Zalogowany workers:" textFill="WHITE">
                <font>
                   <Font name="Garamond Bold" size="21.0" />
                </font>
@@ -54,7 +54,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="obecnieZalogowany" alignment="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" text="-" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="currentlyLoggedIn" alignment="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" text="-" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Garamond Bold" size="20.0" />
                </font>
@@ -71,10 +71,10 @@
       </AnchorPane>
       <TableView fx:id="branchTableView" layoutX="245.0" layoutY="87.0" prefHeight="546.0" prefWidth="768.0" styleClass="tableview" stylesheets="@../stylesheet/cartStyleSheet.css">
         <columns>
-          <TableColumn fx:id="miejscowosc_col" minWidth="192.0" prefWidth="192.0" text="Miejscowość" />
-          <TableColumn fx:id="obrot_col" prefWidth="192.0" text="Obrót" />
-            <TableColumn fx:id="liczbaPrac_col" prefWidth="192.0" text="Liczba pracowników" />
-            <TableColumn fx:id="usunButton" prefWidth="192.0" text="Usuń" />
+          <TableColumn fx:id="city_col" minWidth="192.0" prefWidth="192.0" text="Miejscowość" />
+          <TableColumn fx:id="turnover_col" prefWidth="192.0" text="Obrót" />
+            <TableColumn fx:id="employeesAmount_col" prefWidth="192.0" text="Liczba pracowników" />
+            <TableColumn fx:id="deleteButton" prefWidth="192.0" text="Usuń" />
         </columns>
       </TableView>
       <Label layoutX="1023.0" layoutY="198.0" prefHeight="25.0" prefWidth="193.0" text="Dodaj nowy odzdział!">
@@ -82,7 +82,7 @@
             <Font name="Garamond Bold" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="nazwaMiejscowosci" layoutX="1045.0" layoutY="257.0" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
+      <TextField fx:id="city" layoutX="1045.0" layoutY="257.0" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
          <font>
             <Font name="Garamond" size="12.0" />
          </font></TextField>
@@ -91,7 +91,7 @@
             <Font name="Garamond Bold" size="13.0" />
          </font>
       </Label>
-      <Button fx:id="dodajOddzial" layoutX="1045.0" layoutY="304.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Dodaj">
+      <Button fx:id="addBranch" layoutX="1045.0" layoutY="304.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Dodaj">
          <font>
             <Font name="Garamond" size="15.0" />
          </font></Button>

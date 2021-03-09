@@ -23,34 +23,34 @@ public class Cart_Controller implements Initializable {
         Session session = hibernate_controller.getSession();
 
         @FXML
-        private Label obecnieZalogowany;
+        private Label currentlyLoggedIn;
 
         @FXML
-        private TextField showPracownik;
+        private TextField showWorker;
 
         @FXML
-        private TextField showOddzial;
+        private TextField showBranch;
 
         @FXML
-        private TextField showNumerFaktury;
+        private TextField invoiceNumber;
 
         @FXML
-        private TextField podsumowanieCeny;
+        private TextField priceSummary;
 
         @FXML
-        private Button zrealizujButton;
+        private Button realizeButton;
 
         @FXML
-        private ChoiceBox<String> chooseZamowienie;
+        private ChoiceBox<String> chooseOrder;
 
         @FXML
-        private TableView<CzescSamochodowa> cart_table;
+        private TableView<CarParts> cart_table;
 
         @FXML
-        private TableColumn<CzescSamochodowa, String> nazwa_col;
+        private TableColumn<CarParts, String> name_col;
 
         @FXML
-        private TableColumn<CzescSamochodowa, Integer> cena_col;
+        private TableColumn<CarParts, Integer> price_col;
 
         @FXML
         void branchButton( MouseEvent event) throws IOException {
@@ -100,21 +100,21 @@ public class Cart_Controller implements Initializable {
         @Override
         public void initialize ( URL location , ResourceBundle resources ) {
                 currentlyLogged();
-                showNumerFaktury.setEditable( false );
-                showOddzial.setEditable( false );
-                showPracownik.setEditable( false );
+                invoiceNumber.setEditable( false );
+                showBranch.setEditable( false );
+                showWorker.setEditable( false );
                 realize();
         }
 
         public void initCols() {
-                cena_col.setCellValueFactory( new PropertyValueFactory<CzescSamochodowa, Integer>( "cena" ) );
-                nazwa_col.setCellValueFactory( new PropertyValueFactory<CzescSamochodowa,String>( "nazwa_czesci"  ) );
+                price_col.setCellValueFactory( new PropertyValueFactory<CarParts, Integer>( "price" ) );
+                name_col.setCellValueFactory( new PropertyValueFactory<CarParts,String>( "part_name"  ) );
         }
 
         public void loadData(int id_zam){
-                Zamowienie zamowienie = session.get( Zamowienie.class, id_zam );
-                List<CzescSamochodowa> resultList = zamowienie.getCzescSamochodowa();
-                ObservableList<CzescSamochodowa> data = FXCollections.observableList(resultList);
+                Order order = session.get( Order.class, id_zam );
+                List<CarParts> resultList = order.getCzescSamochodowa();
+                ObservableList<CarParts> data = FXCollections.observableList(resultList);
                 cart_table.setItems( data );
                 initCols();
 
@@ -122,49 +122,49 @@ public class Cart_Controller implements Initializable {
 
         public void  currentlyLogged() {
                 LoginScene_Controller loginScene_controller = new LoginScene_Controller();
-                obecnieZalogowany.setText( loginScene_controller.getImietemp() + " " + loginScene_controller.getNazwiskotemp() );
+                currentlyLoggedIn.setText( loginScene_controller.getNameTemp() + " " + loginScene_controller.getSurnameTemp() );
         }
 
         public void realize() {
-                List<Zamowienie> zamowienieList = session.createQuery( "FROM Zamowienie" ).getResultList();
-                ObservableList<Zamowienie> zamowienieObservableList = FXCollections.observableArrayList(zamowienieList);
+                List<Order> orderList = session.createQuery( "FROM Order" ).getResultList();
+                ObservableList<Order> orderObservableList = FXCollections.observableArrayList(orderList);
                 int i = 0;
-                while(i < zamowienieObservableList.size()){
-                        chooseZamowienie.getItems().add("Numer zamowienia: " + String.valueOf( zamowienieObservableList.get( i ).getId_zamowienia()) + ", Status realizacji: "
-                                + zamowienieObservableList.get( i ).getZrealizowano() );
+                while(i < orderObservableList.size()){
+                        chooseOrder.getItems().add("Numer zamowienia: " + String.valueOf( orderObservableList.get( i ).getId_order()) + ", Status realizacji: "
+                                + orderObservableList.get( i ).getIfCompleted() );
                         i++;
                 }
 
-                chooseZamowienie.setOnAction( event -> {
-                        int id_zam = chooseZamowienie.getSelectionModel().getSelectedIndex() + 1;
+                chooseOrder.setOnAction(event -> {
+                        int id_zam = chooseOrder.getSelectionModel().getSelectedIndex() + 1;
                         loadData( id_zam );
-                        Zamowienie temp = session.get( Zamowienie.class,id_zam );
-                        showPracownik.setText( temp.getPracownik().getImie() + " " + temp.getPracownik().getNazwisko() );
-                        showOddzial.setText( temp.getPracownik().getSklep().getMiejscowosc() );
-                        showNumerFaktury.setText( String.valueOf( id_zam ) );
-                        List<CzescSamochodowa> kosztCalkowityList = temp.getCzescSamochodowa();
+                        Order temp = session.get( Order.class,id_zam );
+                        showWorker.setText( temp.getPracownik().getName() + " " + temp.getPracownik().getSurname() );
+                        showBranch.setText( temp.getPracownik().getSklep().getCity() );
+                        invoiceNumber.setText( String.valueOf( id_zam ) );
+                        List<CarParts> kosztCalkowityList = temp.getCzescSamochodowa();
                         int a = 0;
                         float kosztCalkowity = 0;
                         while(a < kosztCalkowityList.size()){
-                                kosztCalkowity = kosztCalkowity + kosztCalkowityList.get( a ).getCena();
+                                kosztCalkowity = kosztCalkowity + kosztCalkowityList.get( a ).getPrice();
                                 a++;
                         }
                         final float obrot = kosztCalkowity;
-                        podsumowanieCeny.setText( String.valueOf( "Podsumowanie: " + kosztCalkowity + " zl" ) );
-                        zrealizujButton.setOnAction( event1 -> {
-                                if(!temp.getZrealizowano().equals( "Zrealizowano" )){
-                                        Sklep tempSklep = session.get( Sklep.class, temp.getPracownik().getSklep().getId_sklepu() );
+                        priceSummary.setText( String.valueOf( "Podsumowanie: " + kosztCalkowity + " zl" ) );
+                        realizeButton.setOnAction(event1 -> {
+                                if(!temp.getIfCompleted().equals( "Zrealizowano" )){
+                                        Shop tempShop = session.get( Shop.class, temp.getPracownik().getSklep().getId_shop() );
                                         Transaction transaction = session.beginTransaction( );
-                                        temp.setZrealizowano( "Zrealizowano" );
-                                        tempSklep.setObrot( (tempSklep.getObrot() + obrot) );
+                                        temp.setIfCompleted( "Zrealizowano" );
+                                        tempShop.setTurnover( (tempShop.getTurnover() + obrot) );
                                         transaction.commit( );
                                 }
                         } );
                 } );
 
-                showNumerFaktury.setEditable( false );
-                showOddzial.setEditable( false );
-                showPracownik.setEditable( false );
+                invoiceNumber.setEditable( false );
+                showBranch.setEditable( false );
+                showWorker.setEditable( false );
 
 
         }

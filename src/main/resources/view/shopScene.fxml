@@ -25,7 +25,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" text="Zalogowany pracownik:" textFill="WHITE">
+            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" text="Zalogowany workers:" textFill="WHITE">
                <font>
                   <Font name="Garamond Bold" size="21.0" />
                </font>
@@ -62,7 +62,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="obecnieZalogowany" alignment="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" text="-" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="currentlyLoggedIn" alignment="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" text="-" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Garamond Bold" size="20.0" />
                </font>
@@ -71,16 +71,16 @@
       </AnchorPane>
       <TableView fx:id="shopTableView" layoutX="247.0" layoutY="90.0" prefHeight="600.0" prefWidth="1000.0" styleClass="tableview" stylesheets="@../stylesheet/cartStyleSheet.css" AnchorPane.leftAnchor="256.0" AnchorPane.rightAnchor="24.5">
         <columns>
-          <TableColumn fx:id="kategoria_col" prefWidth="145.0" text="Kategoria" />
-          <TableColumn fx:id="nazwa_col" prefWidth="145.0" text="Nazwa" />
-            <TableColumn fx:id="numerSeryjny_col" prefWidth="145.0" text="Numer seryjny" />
-            <TableColumn fx:id="dostepnosc_col" prefWidth="145.0" text="Dostępność" />
-            <TableColumn fx:id="cena_col" minWidth="7.0" prefWidth="145.0" text="Cena" />
-            <TableColumn fx:id="ilosc_col" prefWidth="145.0" text="Ilość" />
-            <TableColumn fx:id="dodajDoKoszykaButton" prefWidth="130.0" text="Dodaj do koszyka" />
+          <TableColumn fx:id="category_col" prefWidth="145.0" text="Category" />
+          <TableColumn fx:id="name_col" prefWidth="145.0" text="Nazwa" />
+            <TableColumn fx:id="serialNumber_col" prefWidth="145.0" text="Numer seryjny" />
+            <TableColumn fx:id="availability_col" prefWidth="145.0" text="Dostępność" />
+            <TableColumn fx:id="price_col" minWidth="7.0" prefWidth="145.0" text="Cena" />
+            <TableColumn fx:id="amount_col" prefWidth="145.0" text="Ilość" />
+            <TableColumn fx:id="addToCartButton" prefWidth="130.0" text="Dodaj do koszyka" />
         </columns>
       </TableView>
-      <TextField fx:id="insertSeryjny" layoutX="256.0" layoutY="57.0" prefHeight="25.0" prefWidth="290.0" promptText="Szukaj po: Numer seryjny" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
+      <TextField fx:id="insertSerialNumber" layoutX="256.0" layoutY="57.0" prefHeight="25.0" prefWidth="290.0" promptText="Szukaj po: Numer seryjny" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
          <font>
             <Font name="Garamond" size="14.0" />
          </font></TextField>
@@ -89,26 +89,26 @@
             <Font name="Garamond" size="30.0" />
          </font>
       </Label>
-      <TextField fx:id="odTextArea" layoutX="640.0" layoutY="57.0" prefHeight="25.0" prefWidth="85.0" promptText="od" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
+      <TextField fx:id="fromTextArea" layoutX="640.0" layoutY="57.0" prefHeight="25.0" prefWidth="85.0" promptText="od" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
          <font>
             <Font name="Garamond" size="14.0" />
          </font></TextField>
-      <TextField fx:id="doTextArea" layoutX="731.0" layoutY="57.0" prefHeight="25.0" prefWidth="85.0" promptText="do" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
+      <TextField fx:id="toTextArea" layoutX="731.0" layoutY="57.0" prefHeight="25.0" prefWidth="85.0" promptText="do" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
          <font>
             <Font name="Garamond" size="14.0" />
          </font>
       </TextField>
-      <Button fx:id="zastosujBttn" layoutX="823.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Zastosuj">
+      <Button fx:id="applyButton" layoutX="823.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Zastosuj">
          <font>
             <Font name="Garamond" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="wyczyscKryteria" layoutX="902.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Wyczysc">
+      <Button fx:id="clearCriteria" layoutX="902.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="73.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Wyczysc">
          <font>
             <Font name="Garamond" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="nowyKoszyk" layoutX="1128.0" layoutY="58.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Nowy koszyk">
+      <Button fx:id="newCart" layoutX="1128.0" layoutY="58.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="128.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Nowy koszyk">
          <font>
             <Font name="Garamond" size="15.0" />
          </font>

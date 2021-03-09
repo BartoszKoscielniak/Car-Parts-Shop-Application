@@ -30,28 +30,28 @@ public class BranchScene_Controller implements Initializable {
     Alert alert = new Alert( Alert.AlertType.ERROR );
 
     @FXML
-    private Label obecnieZalogowany;
+    private Label currentlyLoggedIn;
 
     @FXML
-    private TextField nazwaMiejscowosci;
+    private TextField city;
 
     @FXML
-    private Button dodajOddzial;
+    private Button addBranch;
 
     @FXML
-    private TableView<Sklep> branchTableView;
+    private TableView<Shop> branchTableView;
 
     @FXML
-    private TableColumn<Sklep, String> miejscowosc_col;
+    private TableColumn<Shop, String> city_col;
 
     @FXML
-    private TableColumn<Sklep, Integer> obrot_col;
+    private TableColumn<Shop, Integer> turnover_col;
 
     @FXML
-    private TableColumn liczbaPrac_col;
+    private TableColumn employeesAmount_col;
 
     @FXML
-    private TableColumn<Sklep, String> usunButton;
+    private TableColumn<Shop, String> deleteButton;
 
     @FXML
     void branchButton( MouseEvent event) throws IOException {
@@ -107,15 +107,15 @@ public class BranchScene_Controller implements Initializable {
     }
 
     public void initCols(){
-        miejscowosc_col.setCellValueFactory( new PropertyValueFactory<Sklep,String>( "Miejscowosc" ) );
-        obrot_col.setCellValueFactory( new PropertyValueFactory<Sklep,Integer>( "Obrot" ) );
+        city_col.setCellValueFactory( new PropertyValueFactory<Shop,String>( "city" ) );
+        turnover_col.setCellValueFactory( new PropertyValueFactory<Shop,Integer>( "turnover" ) );
 
-        Callback<TableColumn<Sklep, String>, TableCell<Sklep, String>> cellFactory
+        Callback<TableColumn<Shop, String>, TableCell<Shop, String>> cellFactory
                 = //
-                new Callback<TableColumn<Sklep, String>, TableCell<Sklep, String>>() {
+                new Callback<TableColumn<Shop, String>, TableCell<Shop, String>>() {
                     @Override
-                    public TableCell call(final TableColumn<Sklep, String> param) {
-                        final TableCell<Sklep, String> cell = new TableCell<Sklep, String>() {
+                    public TableCell call(final TableColumn<Shop, String> param) {
+                        final TableCell<Shop, String> cell = new TableCell<Shop, String>() {
 
                             final Button btn = new Button("Usun");
 
@@ -126,11 +126,11 @@ public class BranchScene_Controller implements Initializable {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
-                                    Sklep sklep1 = getTableView().getItems( ).get( getIndex());
+                                    Shop shop1 = getTableView().getItems( ).get( getIndex());
                                             btn.setOnAction( event -> {
-                                                if(sklep1.getPracownik().isEmpty()){
+                                                if(shop1.getPracownik().isEmpty()){
                                                     Transaction transaction = session.beginTransaction( );
-                                                    Query query = session.createQuery( "DELETE FROM Sklep WHERE id_sklepu ='" + sklep1.getId_sklepu( ) + "'" );
+                                                    Query query = session.createQuery( "DELETE FROM Shop WHERE id_shop ='" + shop1.getId_shop( ) + "'" );
                                                     query.executeUpdate( );
                                                     transaction.commit( );
                                                     loadData( );
@@ -149,12 +149,12 @@ public class BranchScene_Controller implements Initializable {
                     }
                 };
 
-        Callback<TableColumn<Sklep, String>, TableCell<Sklep, String>> cellFactory2
+        Callback<TableColumn<Shop, String>, TableCell<Shop, String>> cellFactory2
                 = //
-                new Callback<TableColumn<Sklep, String>, TableCell<Sklep, String>>() {
+                new Callback<TableColumn<Shop, String>, TableCell<Shop, String>>() {
                     @Override
-                    public TableCell call(final TableColumn<Sklep, String> param) {
-                        final TableCell<Sklep, String> cell = new TableCell<Sklep, String>() {
+                    public TableCell call(final TableColumn<Shop, String> param) {
+                        final TableCell<Shop, String> cell = new TableCell<Shop, String>() {
 
                             @Override
                             public void updateItem(String item, boolean empty) {
@@ -163,15 +163,15 @@ public class BranchScene_Controller implements Initializable {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
-                                    Sklep sklep1 = getTableView().getItems( ).get( getIndex());
-                                    List<Pracownik> pracownikList = new ArrayList<>();
+                                    Shop shop1 = getTableView().getItems( ).get( getIndex());
+                                    List<Workers> workersList = new ArrayList<>();
                                     session.beginTransaction();
-                                    pracownikList = session.createQuery( "FROM Pracownik" ).getResultList();
+                                    workersList = session.createQuery( "FROM Workers" ).getResultList();
                                     session.getTransaction().commit();
                                     int i = 0;
                                     int temp = 0;
-                                    while(i < pracownikList.size()){
-                                        if(pracownikList.get( i ).getSklep().getId_sklepu() == sklep1.getId_sklepu()){
+                                    while(i < workersList.size()){
+                                        if(workersList.get( i ).getSklep().getId_shop() == shop1.getId_shop()){
                                             temp++;
                                         }
                                         i++;
@@ -186,33 +186,33 @@ public class BranchScene_Controller implements Initializable {
                     }
                 };
 
-        liczbaPrac_col.setCellFactory(cellFactory2);
-        usunButton.setCellFactory(cellFactory);
+        employeesAmount_col.setCellFactory(cellFactory2);
+        deleteButton.setCellFactory(cellFactory);
     }
 
     public void loadData(){
-        List<Sklep> results = session.createQuery( "From Sklep" ).getResultList();
-        ObservableList<Sklep> data = FXCollections.observableArrayList(results);
+        List<Shop> results = session.createQuery( "From Shop" ).getResultList();
+        ObservableList<Shop> data = FXCollections.observableArrayList(results);
         branchTableView.setItems( data );
     }
 
     public void addNewBranch(){
-        dodajOddzial.setOnAction( event -> {
-            if(!nazwaMiejscowosci.getText().isEmpty()){
-                Sklep temp = new Sklep( nazwaMiejscowosci.getText(),0 );
+        addBranch.setOnAction(event -> {
+            if(!city.getText().isEmpty()){
+                Shop temp = new Shop( city.getText(),0 );
                 session.beginTransaction();
                 session.save( temp );
                 session.getTransaction().commit();
                 loadData();
             }
-            nazwaMiejscowosci.clear();
-            nazwaMiejscowosci.setPromptText( "Wpisz miejscowosc!" );
+            city.clear();
+            city.setPromptText( "Wpisz miejscowosc!" );
         } );
     }
 
     public void  currentlyLogged() {
         LoginScene_Controller loginScene_controller = new LoginScene_Controller();
-        obecnieZalogowany.setText( loginScene_controller.getImietemp() + " " + loginScene_controller.getNazwiskotemp() );
+        currentlyLoggedIn.setText( loginScene_controller.getNameTemp() + " " + loginScene_controller.getSurnameTemp() );
     }
 
 }

@@ -11,8 +11,8 @@
 <AnchorPane prefHeight="400.0" prefWidth="500.0" styleClass="login" stylesheets="@../stylesheet/stylesheet.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LoginScene_Controller">
    <children>
       <PasswordField fx:id="peselPasswd" layoutX="99.0" layoutY="200.0" prefHeight="56.0" prefWidth="303.0" promptText="Pesel" styleClass="txtFields" />
-      <TextField fx:id="nazwiskoText" layoutX="99.0" layoutY="144.0" prefHeight="56.0" prefWidth="303.0" promptText="Nazwisko" styleClass="txtFields" />
-      <Button fx:id="zalogujButton" layoutX="145.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="211.0" styleClass="zalogujBttn" text="Zaloguj sie!">
+      <TextField fx:id="surnameText" layoutX="99.0" layoutY="144.0" prefHeight="56.0" prefWidth="303.0" promptText="Nazwisko" styleClass="txtFields" />
+      <Button fx:id="LogInButton" layoutX="145.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="211.0" styleClass="zalogujBttn" text="Zaloguj sie!">
          <font>
             <Font name="Poor Richard" size="20.0" />
          </font></Button>
@@ -26,7 +26,7 @@
             <Font name="Poor Richard" size="48.0" />
          </font>
       </Text>
-      <Label fx:id="jakZalogowacLabel" layoutX="198.0" layoutY="272.0" onMouseClicked="#jakZalogowacMouseClicked" styleClass="forgetBttn" text="Jak sie zalogowac?">
+      <Label fx:id="jakZalogowacLabel" layoutX="198.0" layoutY="272.0" onMouseClicked="#howToLogIn" styleClass="forgetBttn" text="Jak sie zalogowac?">
          <font>
             <Font name="Poor Richard" size="15.0" />
          </font>

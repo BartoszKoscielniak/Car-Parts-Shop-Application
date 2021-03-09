@@ -22,32 +22,32 @@ public class LoginScene_Controller implements Initializable {
 
     private Alert alert = new Alert(AlertType.INFORMATION);
     private Alert wrongLoginPsswd = new Alert(AlertType.ERROR);
-    private static int idZalogowanegoPracownika;
-    private static String imietemp;
-    private static String nazwiskotemp;
-    private static String data_zatrudnieniatemp;
-    private static double nr_telefonutemp;
-    private static double peseltemp;
-    private static double zarobkitemp;
+    private static int LoggedInWorkerID;
+    private static String nameTemp;
+    private static String surnameTemp;
+    private static String employment_data;
+    private static double telephoneNumberTemp;
+    private static double peselTemp;
+    private static double earningsTemp;
     private static boolean logged = false;
 
     Hibernate_Controller hibernate_controller = new Hibernate_Controller();
     Session session = hibernate_controller.getSession();
-    List<Pracownik> pracownikList = session.createQuery( "FROM Pracownik" ).getResultList();
+    List<Workers> workersList = session.createQuery( "FROM Workers" ).getResultList();
 
     @FXML
     private PasswordField peselPasswd;
 
     @FXML
-    private TextField nazwiskoText;
+    private TextField surnameText;
 
     @FXML
-    private Button zalogujButton;
+    private Button LogInButton;
 
     @FXML
-    void jakZalogowacMouseClicked(MouseEvent event) {
+    void howToLogIn(MouseEvent event) {
         alert.setTitle( "Jak sie zalogowac?" );
-        alert.setContentText( "Do testu prosze uzyc: \n Nazwisko: Kowalski \n Pesel: 79128348" );
+        alert.setContentText( "Do testu prosze uzyc: \n Nazwisko: qwe \n Pesel: 123" );
         alert.setHeaderText( null );
         alert.show();
     }
@@ -56,42 +56,42 @@ public class LoginScene_Controller implements Initializable {
     public void initialize ( URL location , ResourceBundle resources ) {
 
         int i = 0;
-        boolean znaleziono = false;
-        while(i < pracownikList.size()) {
-            if(pracownikList.get( i ).getNazwisko().equals( "qwe" ) && pracownikList.get( i ).getPesel() == 123){
-                znaleziono = true;
+        boolean found = false;
+        while(i < workersList.size()) {
+            if(workersList.get( i ).getSurname().equals( "qwe" ) && workersList.get( i ).getPesel() == 123){
+                found = true;
             }
             i++;
         }
         login();
 
-        if(znaleziono == false){
-            Pracownik pracownik = new Pracownik( "Kamil" , "qwe" , "06-06-2020" , 519344934 , 123 , 3000 );
-            Sklep sklep = new Sklep( "Warszawa" , 0 );
+        if(found == false){
+            Workers workers = new Workers( "Kamil" , "qwe" , "06-06-2020" , 519344934 , 123 , 3000 );
+            Shop shop = new Shop( "Warszawa" , 0 );
             Transaction transaction = session.beginTransaction( );
-            pracownik.setSklep( sklep );
-            session.save( pracownik );
-            session.save( sklep );
+            workers.setSklep(shop);
+            session.save(workers);
+            session.save(shop);
             transaction.commit( );
         }
     }
 
     public void login() {
 
-        zalogujButton.setOnAction( new EventHandler<ActionEvent>( ) {
+        LogInButton.setOnAction(new EventHandler<ActionEvent>( ) {
             @Override
             public void handle ( ActionEvent event ) {
                 int i = 0;
-                while(i < pracownikList.size()) {
-                    if ( ( nazwiskoText.getText( ) ).equals( pracownikList.get( i ).getNazwisko( ) ) && Integer.parseInt( peselPasswd.getText( ) ) == pracownikList.get( i ).getPesel( ) ){
+                while(i < workersList.size()) {
+                    if ( ( surnameText.getText( ) ).equals( workersList.get( i ).getSurname( ) ) && Integer.parseInt( peselPasswd.getText( ) ) == workersList.get( i ).getPesel( ) ){
                         Parent root = null;
-                        idZalogowanegoPracownika = pracownikList.get( i ).getId_prac();
-                        imietemp = pracownikList.get( i ).getImie();
-                        nazwiskotemp = pracownikList.get( i ).getNazwisko();
-                        data_zatrudnieniatemp = pracownikList.get( i ).getData_zatrudnienia();
-                        nr_telefonutemp = pracownikList.get( i ).getNr_telefonu();
-                        peseltemp = pracownikList.get( i ).getPesel();
-                        zarobkitemp = pracownikList.get( i ).getZarobki();
+                        LoggedInWorkerID = workersList.get( i ).getId_worker();
+                        nameTemp = workersList.get( i ).getName();
+                        surnameTemp = workersList.get( i ).getSurname();
+                        employment_data = workersList.get( i ).getDateOfEmployment();
+                        telephoneNumberTemp = workersList.get( i ).getPhoneNumber();
+                        peselTemp = workersList.get( i ).getPesel();
+                        earningsTemp = workersList.get( i ).getEarings();
                         try {
                             root = FXMLLoader.load( getClass( ).getResource( "View/main.fxml" ) );
                         } catch (IOException e) {
@@ -111,38 +111,38 @@ public class LoginScene_Controller implements Initializable {
                     wrongLoginPsswd.setTitle( "Error" );
                     wrongLoginPsswd.setContentText( "Podaj prawidlowy login lub haslo" );
                     wrongLoginPsswd.show( );
-                    nazwiskoText.clear( );
+                    surnameText.clear( );
                     peselPasswd.clear( );
                 }
             }
         } );
     }
 
-    public static int getIdZalogowanegoPracownika () {
-        return idZalogowanegoPracownika;
+    public static int getLoggedInWorkerID() {
+        return LoggedInWorkerID;
     }
 
-    public static String getImietemp () {
-        return imietemp;
+    public static String getNameTemp() {
+        return nameTemp;
     }
 
-    public static String  getNazwiskotemp () {
-        return nazwiskotemp;
+    public static String getSurnameTemp() {
+        return surnameTemp;
     }
 
-    public static String getData_zatrudnieniatemp () {
-        return data_zatrudnieniatemp;
+    public static String getEmployment_data() {
+        return employment_data;
     }
 
-    public static double getNr_telefonutemp () {
-        return nr_telefonutemp;
+    public static double getTelephoneNumberTemp() {
+        return telephoneNumberTemp;
     }
 
-    public static double getPeseltemp () {
-        return peseltemp;
+    public static double getPeselTemp() {
+        return peselTemp;
     }
 
-    public static double getZarobkitemp () {
-        return zarobkitemp;
+    public static double getEarningsTemp() {
+        return earningsTemp;
     }
 }

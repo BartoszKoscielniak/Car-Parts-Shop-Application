@@ -15,7 +15,7 @@
             <DropShadow />
          </effect>
          <children>
-            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" text="Zalogowany pracownik:" textFill="WHITE">
+            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" text="Zalogowany workers:" textFill="WHITE">
                <font>
                   <Font name="Garamond Bold" size="21.0" />
                </font>
@@ -28,7 +28,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="obecnieZalogowany" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" text="-" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="currentlyLoggedIn" alignment="CENTER" contentDisplay="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" text="-" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Garamond Bold" size="20.0" />
                </font>
@@ -82,7 +82,7 @@
             <Font name="Garamond Bold" size="48.0" />
          </font>
       </Label>
-      <Label fx:id="nazwaOddzialu" alignment="CENTER" layoutX="863.0" layoutY="360.0" prefHeight="44.0" prefWidth="249.0" text="Label">
+      <Label fx:id="branchName" alignment="CENTER" layoutX="863.0" layoutY="360.0" prefHeight="44.0" prefWidth="249.0" text="Label">
          <font>
             <Font name="Garamond Bold" size="48.0" />
          </font></Label>

@@ -24,55 +24,55 @@ public class ShopScene_Controller implements Initializable {
     Hibernate_Controller hibernate_controller = new Hibernate_Controller();
     Session session = hibernate_controller.getSession();
 
-    List<CzescSamochodowa> resultList = session.createQuery( "FROM CzescSamochodowa" ).getResultList();
-    ObservableList<CzescSamochodowa> data = FXCollections.observableList(resultList);
+    List<CarParts> resultList = session.createQuery( "FROM CarParts" ).getResultList();
+    ObservableList<CarParts> data = FXCollections.observableList(resultList);
 
     Alert createCart = new Alert( Alert.AlertType.ERROR );
 
     @FXML
-    private Label obecnieZalogowany;
+    private Label currentlyLoggedIn;
 
     @FXML
-    private TextField insertSeryjny;
+    private TextField insertSerialNumber;
 
     @FXML
-    private TextField odTextArea;
+    private TextField fromTextArea;
 
     @FXML
-    private TextField doTextArea;
+    private TextField toTextArea;
 
     @FXML
-    private Button zastosujBttn;
+    private Button applyButton;
 
     @FXML
-    private TableView<CzescSamochodowa> shopTableView;
+    private TableView<CarParts> shopTableView;
 
     @FXML
-    private TableColumn<CzescSamochodowa, String> kategoria_col;
+    private TableColumn<CarParts, String> category_col;
 
     @FXML
-    private TableColumn<CzescSamochodowa, String> nazwa_col;
+    private TableColumn<CarParts, String> name_col;
 
     @FXML
-    private TableColumn<CzescSamochodowa, Integer> numerSeryjny_col;
+    private TableColumn<CarParts, Integer> serialNumber_col;
 
     @FXML
-    private TableColumn<CzescSamochodowa, Boolean> dostepnosc_col;
+    private TableColumn<CarParts, Boolean> availability_col;
 
     @FXML
-    private TableColumn<CzescSamochodowa,Integer> cena_col;
+    private TableColumn<CarParts,Integer> price_col;
 
     @FXML
-    private TableColumn<CzescSamochodowa, Integer> ilosc_col;
+    private TableColumn<CarParts, Integer> amount_col;
 
     @FXML
-    private TableColumn<CzescSamochodowa, String> dodajDoKoszykaButton;
+    private TableColumn<CarParts, String> addToCartButton;
 
     @FXML
-    private Button nowyKoszyk;
+    private Button newCart;
 
     @FXML
-    private Button wyczyscKryteria;
+    private Button clearCriteria;
 
     @FXML
     void branchButton( MouseEvent event) throws IOException {
@@ -129,18 +129,18 @@ public class ShopScene_Controller implements Initializable {
     }
 
     public void initCols() {
-        nazwa_col.setCellValueFactory( new PropertyValueFactory<CzescSamochodowa, String>( "nazwa_czesci" ) );
-        numerSeryjny_col.setCellValueFactory( new PropertyValueFactory<CzescSamochodowa, Integer>( "numer_seryjny" ) );
-        dostepnosc_col.setCellValueFactory( new PropertyValueFactory<CzescSamochodowa,Boolean>( "dostepnosc" ) );
-        cena_col.setCellValueFactory( new PropertyValueFactory<CzescSamochodowa,Integer>( "cena" ) );
-        ilosc_col.setCellValueFactory( new PropertyValueFactory<CzescSamochodowa,Integer>( "ilosc" ) );
+        name_col.setCellValueFactory( new PropertyValueFactory<CarParts, String>( "part_name" ) );
+        serialNumber_col.setCellValueFactory( new PropertyValueFactory<CarParts, Integer>( "serial_number" ) );
+        availability_col.setCellValueFactory( new PropertyValueFactory<CarParts,Boolean>( "availability" ) );
+        price_col.setCellValueFactory( new PropertyValueFactory<CarParts,Integer>( "price" ) );
+        amount_col.setCellValueFactory( new PropertyValueFactory<CarParts,Integer>( "amount" ) );
 
-        Callback<TableColumn<CzescSamochodowa, String>, TableCell<CzescSamochodowa, String>> kategoriaCellFactory
+        Callback<TableColumn<CarParts, String>, TableCell<CarParts, String>> categoryCellFactory
                 = //
-                new Callback<TableColumn<CzescSamochodowa, String>, TableCell<CzescSamochodowa, String>>() {
+                new Callback<TableColumn<CarParts, String>, TableCell<CarParts, String>>() {
                     @Override
-                    public TableCell call(final TableColumn<CzescSamochodowa, String> param) {
-                        final TableCell<CzescSamochodowa, String> cell = new TableCell<CzescSamochodowa, String>() {
+                    public TableCell call(final TableColumn<CarParts, String> param) {
+                        final TableCell<CarParts, String> cell = new TableCell<CarParts, String>() {
 
                             @Override
                             public void updateItem(String item, boolean empty) {
@@ -149,9 +149,9 @@ public class ShopScene_Controller implements Initializable {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
-                                    CzescSamochodowa czescSamochodowa = getTableView().getItems( ).get( getIndex());
-                                    CzescSamochodowa temp = session.get( CzescSamochodowa.class,czescSamochodowa.getId_czesci() );
-                                    setText( temp.getKategoria().getNazwa_kategorii() );
+                                    CarParts carParts = getTableView().getItems( ).get( getIndex());
+                                    CarParts temp = session.get( CarParts.class, carParts.getId_part() );
+                                    setText( temp.getKategoria().getCategory_name() );
                                 }
                             }
                         };
@@ -159,13 +159,13 @@ public class ShopScene_Controller implements Initializable {
                     }
                 };
 
-        Callback<TableColumn<CzescSamochodowa, String>, TableCell<CzescSamochodowa, String>> addButtoncellFactory
+        Callback<TableColumn<CarParts, String>, TableCell<CarParts, String>> addButtonCellFactory
                 = //
-                new Callback<TableColumn<CzescSamochodowa, String>, TableCell<CzescSamochodowa, String>>() {
+                new Callback<TableColumn<CarParts, String>, TableCell<CarParts, String>>() {
 
                     @Override
-                    public TableCell call(final TableColumn<CzescSamochodowa, String> param) {
-                        final TableCell<CzescSamochodowa, String> cell = new TableCell<CzescSamochodowa, String>() {
+                    public TableCell call(final TableColumn<CarParts, String> param) {
+                        final TableCell<CarParts, String> cell = new TableCell<CarParts, String>() {
 
                             final Button btn = new Button("Dodaj do koszyka");
 
@@ -176,28 +176,28 @@ public class ShopScene_Controller implements Initializable {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
-                                    CzescSamochodowa czesctemp = getTableView().getItems().get( getIndex() );
-                                    if(czesctemp.getIlosc() == 0){
-                                        CzescSamochodowa temp = session.get( CzescSamochodowa.class,czesctemp.getId_czesci() );
+                                    CarParts czesctemp = getTableView().getItems().get( getIndex() );
+                                    if(czesctemp.getAmount() == 0){
+                                        CarParts temp = session.get( CarParts.class,czesctemp.getId_part() );
                                         Transaction transaction = session.beginTransaction();
-                                        temp.setDostepnosc( "Niedostepny" );
+                                        temp.setAvailability( "Niedostepny" );
                                         transaction.commit();
                                     }
                                     btn.setOnAction( event -> {
                                         boolean znaleziono = false;
-                                        if(czesctemp.getIlosc() != 0){
-                                            List<Zamowienie> zamowienieList = session.createQuery( "FROM Zamowienie" ).getResultList( );
+                                        if(czesctemp.getAmount() != 0){
+                                            List<Order> orderList = session.createQuery( "FROM Order" ).getResultList( );
                                             int i = 0;
-                                            while (i < zamowienieList.size( )) {
-                                                if ( zamowienieList.get( i ).getZrealizowano( ).equals( "Niezrealizowane" ) ){
-                                                    Zamowienie tempZam = session.get( Zamowienie.class , zamowienieList.get( i ).getId_zamowienia( ) );
-                                                    CzescSamochodowa tempCze = session.get( CzescSamochodowa.class , czesctemp.getId_czesci( ) );
-                                                    int ilosc_czesci = tempCze.getIlosc( );
-                                                    List<CzescSamochodowa> tempList = tempZam.getCzescSamochodowa( );
+                                            while (i < orderList.size( )) {
+                                                if ( orderList.get( i ).getIfCompleted( ).equals( "Niezrealizowane" ) ){
+                                                    Order tempZam = session.get( Order.class , orderList.get( i ).getId_order( ) );
+                                                    CarParts tempCze = session.get( CarParts.class , czesctemp.getId_part( ) );
+                                                    int ilosc_czesci = tempCze.getAmount( );
+                                                    List<CarParts> tempList = tempZam.getCzescSamochodowa( );
                                                     tempList.add( tempCze );
                                                     tempZam.setCzescSamochodowa( tempList );
                                                     Transaction transaction = session.beginTransaction( );
-                                                    tempCze.setIlosc( ilosc_czesci - 1 );
+                                                    tempCze.setAmount( ilosc_czesci - 1 );
                                                     session.save( tempZam );
                                                     transaction.commit( );
                                                     znaleziono = true;
@@ -226,8 +226,8 @@ public class ShopScene_Controller implements Initializable {
                     }
                 };
 
-        dodajDoKoszykaButton.setCellFactory(addButtoncellFactory);
-        kategoria_col.setCellFactory( kategoriaCellFactory );
+        addToCartButton.setCellFactory(addButtonCellFactory);
+        category_col.setCellFactory( categoryCellFactory );
     }
 
     public void loadData() {
@@ -235,79 +235,79 @@ public class ShopScene_Controller implements Initializable {
     }
 
     public void filtering() {
-        nowyKoszyk.setOnAction( event -> {
+        newCart.setOnAction(event -> {
             LoginScene_Controller loginScene_controller = new LoginScene_Controller();
-            Pracownik tempPrac = session.get( Pracownik.class,loginScene_controller.getIdZalogowanegoPracownika() );
-            Zamowienie temp = new Zamowienie(  );
-            temp.setZrealizowano( "Niezrealizowane" );
+            Workers tempPrac = session.get( Workers.class,loginScene_controller.getLoggedInWorkerID() );
+            Order temp = new Order(  );
+            temp.setIfCompleted( "Niezrealizowane" );
             temp.setPracownik( tempPrac );
             Transaction transaction = session.beginTransaction();
             session.save( temp );
             transaction.commit();
         } );
 
-        zastosujBttn.setOnAction( event -> {
-            ObservableList<CzescSamochodowa> temp3 = FXCollections.observableArrayList(  );
-            if(!odTextArea.getText().isEmpty() && !doTextArea.getText().isEmpty() && !insertSeryjny.getText().isEmpty()){
+        applyButton.setOnAction(event -> {
+            ObservableList<CarParts> temp3 = FXCollections.observableArrayList(  );
+            if(!fromTextArea.getText().isEmpty() && !toTextArea.getText().isEmpty() && !insertSerialNumber.getText().isEmpty()){
                 int c = 0;
                 while(c < data.size()){
-                    if(Integer.parseInt( odTextArea.getText() ) <= data.get( c ).getCena() && Integer.parseInt( doTextArea.getText() ) >= data.get( c ).getCena() && data.get( c ).getNumer_seryjny() == Integer.parseInt( insertSeryjny.getText() )&& data.get( c ).getNumer_seryjny() == Integer.parseInt( insertSeryjny.getText() )){
+                    if(Integer.parseInt( fromTextArea.getText() ) <= data.get( c ).getPrice() && Integer.parseInt( toTextArea.getText() ) >= data.get( c ).getPrice() && data.get( c ).getSerial_number() == Integer.parseInt( insertSerialNumber.getText() )&& data.get( c ).getSerial_number() == Integer.parseInt( insertSerialNumber.getText() )){
                         temp3.add( data.get( c ) );
                     }
                     c++;
                 }
                 shopTableView.setItems( temp3 );
-            } else if(!odTextArea.getText().isEmpty() && !insertSeryjny.getText().isEmpty()) {
+            } else if(!fromTextArea.getText().isEmpty() && !insertSerialNumber.getText().isEmpty()) {
                 int c = 0;
                 while(c < data.size()) {
-                    if(Integer.parseInt( odTextArea.getText() ) <= data.get( c ).getCena() && data.get( c ).getNumer_seryjny() == Integer.parseInt( insertSeryjny.getText() )){
+                    if(Integer.parseInt( fromTextArea.getText() ) <= data.get( c ).getPrice() && data.get( c ).getSerial_number() == Integer.parseInt( insertSerialNumber.getText() )){
                         temp3.add( data.get( c ) );
                     }
                     c++;
                 }
                 shopTableView.setItems( temp3 );
-            } else if(!doTextArea.getText().isEmpty() && !insertSeryjny.getText().isEmpty()) {
+            } else if(!toTextArea.getText().isEmpty() && !insertSerialNumber.getText().isEmpty()) {
                 int c = 0;
                 while(c < data.size()) {
-                    if(Integer.parseInt( doTextArea.getText() ) >= data.get( c ).getCena() && data.get( c ).getNumer_seryjny() == Integer.parseInt( insertSeryjny.getText() )){
+                    if(Integer.parseInt( toTextArea.getText() ) >= data.get( c ).getPrice() && data.get( c ).getSerial_number() == Integer.parseInt( insertSerialNumber.getText() )){
                         temp3.add( data.get( c )  );
                     }
                     c++;
                 }
                 shopTableView.setItems( temp3 );
 
-            }else if(!insertSeryjny.getText().isEmpty()){
+            }else if(!insertSerialNumber.getText().isEmpty()){
                 int c = 0;
                 while(c < data.size()){
-                    if(data.get( c ).getNumer_seryjny() == Integer.parseInt( insertSeryjny.getText() )){
+                    if(data.get( c ).getSerial_number() == Integer.parseInt( insertSerialNumber.getText() )){
                         temp3.add(data.get( c ));
 
                     }
                     c++;
                 }
                 shopTableView.setItems( temp3 );
-            }else if(!odTextArea.getText().isEmpty() && !doTextArea.getText().isEmpty()){
+            }else if(!fromTextArea.getText().isEmpty() && !toTextArea.getText().isEmpty()){
                 int c = 0;
                 while(c < data.size()){
-                    if(Integer.parseInt( odTextArea.getText() ) <= data.get( c ).getCena() && Integer.parseInt( doTextArea.getText() ) >= data.get( c ).getCena()){
+                    if(Integer.parseInt( fromTextArea.getText() ) <= data.get( c ).getPrice() && Integer.parseInt( toTextArea.getText() ) >= data.get( c ).getPrice()){
                         temp3.add( data.get( c ) );
                     }
                     c++;
                 }
                 shopTableView.setItems( temp3 );
-            } else if(!odTextArea.getText().isEmpty()) {
+            } else if(!fromTextArea.getText().isEmpty()) {
                 int c = 0;
                 while(c < data.size()) {
-                    if(Integer.parseInt( odTextArea.getText() ) <= data.get( c ).getCena()){
+                    if(Integer.parseInt( fromTextArea.getText() ) <= data.get( c ).getPrice()){
                         temp3.add( data.get( c ) );
                     }
                     c++;
                 }
                 shopTableView.setItems( temp3 );
-            } else if(!doTextArea.getText().isEmpty()) {
+            } else if(!toTextArea.getText().isEmpty()) {
                 int c = 0;
                 while(c < data.size()) {
-                    if(Integer.parseInt( doTextArea.getText() ) >= data.get( c ).getCena()){
+                    if(Integer.parseInt( toTextArea.getText() ) >= data.get( c ).getPrice()){
                         temp3.add( data.get( c ) );
                     }
                     c++;
@@ -317,16 +317,16 @@ public class ShopScene_Controller implements Initializable {
 
         } );
 
-        wyczyscKryteria.setOnAction( event -> {
+        clearCriteria.setOnAction(event -> {
             shopTableView.setItems(data);
-            insertSeryjny.clear();
-            odTextArea.clear();
-            doTextArea.clear();
+            insertSerialNumber.clear();
+            fromTextArea.clear();
+            toTextArea.clear();
         } );
     }
 
     public void  currentlyLogged() {
         LoginScene_Controller loginScene_controller = new LoginScene_Controller();
-        obecnieZalogowany.setText( loginScene_controller.getImietemp() + " " + loginScene_controller.getNazwiskotemp() );
+        currentlyLoggedIn.setText( loginScene_controller.getNameTemp() + " " + loginScene_controller.getSurnameTemp() );
     }
 }

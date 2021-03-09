@@ -20,7 +20,7 @@
             <DropShadow />
          </effect>
          <children>
-            <Label fx:id="obecnieZalogowany" alignment="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" text="-" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="currentlyLoggedIn" alignment="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" text="-" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Garamond Bold" size="20.0" />
                </font>
@@ -33,7 +33,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" text="Zalogowany pracownik:" textFill="WHITE">
+            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" text="Zalogowany workers:" textFill="WHITE">
                <font>
                   <Font name="Garamond Bold" size="21.0" />
                </font>
@@ -74,17 +74,17 @@
       </AnchorPane>
       <TableView fx:id="workerTableView" layoutX="245.0" layoutY="87.0" prefHeight="546.0" prefWidth="769.0" styleClass="tableview" stylesheets="@../stylesheet/cartStyleSheet.css">
          <columns>
-            <TableColumn fx:id="imie_col" prefWidth="96.0" text="Imie" />
-            <TableColumn fx:id="nazwisko_col" prefWidth="96.0" text="Nazwisko" />
-            <TableColumn fx:id="data_col" prefWidth="96.0" text="Data urodzenia" />
-            <TableColumn fx:id="telefon_col" prefWidth="96.0" text="Numer telefonu" />
+            <TableColumn fx:id="name_col" prefWidth="96.0" text="Imie" />
+            <TableColumn fx:id="surname_col" prefWidth="96.0" text="Nazwisko" />
+            <TableColumn fx:id="date_col" prefWidth="96.0" text="Data urodzenia" />
+            <TableColumn fx:id="phoneNumber_col" prefWidth="96.0" text="Numer telefonu" />
             <TableColumn fx:id="pesel_col" prefWidth="96.0" text="Pesel" />
-            <TableColumn fx:id="zarobki_col" prefWidth="96.0" text="Zarobki" />
-            <TableColumn fx:id="miejscowosc_col" prefWidth="96.0" text="Oddział" />
-            <TableColumn fx:id="usunButton_col" prefWidth="96.0" text="Usuń" />
+            <TableColumn fx:id="earings_col" prefWidth="96.0" text="Zarobki" />
+            <TableColumn fx:id="city_col" prefWidth="96.0" text="Oddział" />
+            <TableColumn fx:id="deleteButton_col" prefWidth="96.0" text="Usuń" />
          </columns>
       </TableView>
-      <DatePicker fx:id="insertDataUrodzenia" layoutX="1030.0" layoutY="288.0" prefHeight="30.0" prefWidth="222.0" stylesheets="@../stylesheet/cartStyleSheet.css" />
+      <DatePicker fx:id="insertDateOfBirth" layoutX="1030.0" layoutY="288.0" prefHeight="30.0" prefWidth="222.0" stylesheets="@../stylesheet/cartStyleSheet.css" />
       <Text layoutX="1030.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Imie i nazwisko">
          <font>
             <Font name="Cambria Bold" size="12.0" />
@@ -110,13 +110,13 @@
             <Font name="Cambria Bold" size="12.0" />
          </font>
       </Text>
-      <Button fx:id="dodajButton" layoutX="1030.0" layoutY="502.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="222.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Dodaj" />
+      <Button fx:id="addButton" layoutX="1030.0" layoutY="502.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="222.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Dodaj" />
       <Text layoutX="1028.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dodaj nowego pracownika!">
          <font>
             <Font name="Cambria Bold" size="18.0" />
          </font>
       </Text>
-      <ChoiceBox fx:id="oddzialList" layoutX="1030.0" layoutY="464.0" prefHeight="30.0" prefWidth="222.0">
+      <ChoiceBox fx:id="branchList" layoutX="1030.0" layoutY="464.0" prefHeight="30.0" prefWidth="222.0">
          <padding>
             <Insets bottom="5.0" />
          </padding>
@@ -126,15 +126,15 @@
             <Font name="Cambria Bold" size="12.0" />
          </font>
       </Text>
-      <TextField fx:id="insertImie" layoutX="1030.0" layoutY="241.0" prefHeight="30.0" prefWidth="111.0" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
+      <TextField fx:id="insertName" layoutX="1030.0" layoutY="241.0" prefHeight="30.0" prefWidth="111.0" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
          <font>
             <Font name="Garamond" size="12.0" />
          </font></TextField>
-      <TextField fx:id="insertNazwisko" layoutX="1141.0" layoutY="241.0" prefHeight="30.0" prefWidth="111.0" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
+      <TextField fx:id="insertSurname" layoutX="1141.0" layoutY="241.0" prefHeight="30.0" prefWidth="111.0" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
          <font>
             <Font name="Garamond" size="12.0" />
          </font></TextField>
-      <TextField fx:id="insertNrTele" layoutX="1030.0" layoutY="332.0" prefHeight="30.0" prefWidth="222.0" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
+      <TextField fx:id="insertPhoneNumber" layoutX="1030.0" layoutY="332.0" prefHeight="30.0" prefWidth="222.0" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
          <font>
             <Font name="Garamond" size="12.0" />
          </font></TextField>
@@ -142,7 +142,7 @@
          <font>
             <Font name="Garamond" size="12.0" />
          </font></TextField>
-      <TextField fx:id="insertZarobki" layoutX="1030.0" layoutY="420.0" prefHeight="30.0" prefWidth="222.0" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
+      <TextField fx:id="insertEarings" layoutX="1030.0" layoutY="420.0" prefHeight="30.0" prefWidth="222.0" styleClass="txtFieldsInViews" stylesheets="@../stylesheet/cartStyleSheet.css">
          <font>
             <Font name="Garamond" size="12.0" />
          </font></TextField>

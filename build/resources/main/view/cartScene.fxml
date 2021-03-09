@@ -22,19 +22,19 @@
                   <Font name="Garamond" size="30.0" />
                </font>
             </Label>
-            <TextField fx:id="showPracownik" alignment="CENTER" layoutX="39.0" layoutY="326.0" prefHeight="30.0" prefWidth="200.0" styleClass="txtFieldsInCart" stylesheets="@../stylesheet/cartStyleSheet.css">
+            <TextField fx:id="showWorker" alignment="CENTER" layoutX="39.0" layoutY="326.0" prefHeight="30.0" prefWidth="200.0" styleClass="txtFieldsInCart" stylesheets="@../stylesheet/cartStyleSheet.css">
                <font>
                   <Font name="Garamond" size="17.0" />
                </font></TextField>
-            <TextField fx:id="showOddzial" alignment="CENTER" layoutX="39.0" layoutY="379.0" prefHeight="30.0" prefWidth="200.0" styleClass="txtFieldsInCart" stylesheets="@../stylesheet/cartStyleSheet.css">
+            <TextField fx:id="showBranch" alignment="CENTER" layoutX="39.0" layoutY="379.0" prefHeight="30.0" prefWidth="200.0" styleClass="txtFieldsInCart" stylesheets="@../stylesheet/cartStyleSheet.css">
                <font>
                   <Font name="Garamond" size="17.0" />
                </font></TextField>
-            <TextField fx:id="showNumerFaktury" alignment="CENTER" layoutX="39.0" layoutY="432.0" prefHeight="30.0" prefWidth="200.0" styleClass="txtFieldsInCart" stylesheets="@../stylesheet/cartStyleSheet.css">
+            <TextField fx:id="invoiceNumber" alignment="CENTER" layoutX="39.0" layoutY="432.0" prefHeight="30.0" prefWidth="200.0" styleClass="txtFieldsInCart" stylesheets="@../stylesheet/cartStyleSheet.css">
                <font>
                   <Font name="Garamond" size="17.0" />
                </font></TextField>
-            <Label layoutX="38.0" layoutY="308.0" text="Pracownik realizujący" textFill="#fcfbfc">
+            <Label layoutX="38.0" layoutY="308.0" text="Workers realizujący" textFill="#fcfbfc">
                <font>
                   <Font name="Garamond" size="15.0" />
                </font>
@@ -49,7 +49,7 @@
                   <Font name="Garamond" size="15.0" />
                </font>
             </Label>
-            <Button fx:id="zrealizujButton" layoutX="39.0" layoutY="492.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Zrealizuj">
+            <Button fx:id="realizeButton" layoutX="39.0" layoutY="492.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="200.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" text="Zrealizuj">
                <font>
                   <Font name="Garamond" size="19.0" />
                </font>
@@ -82,7 +82,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" stylesheets="@../stylesheet/cartStyleSheet.css" text="Zalogowany pracownik:" textFill="WHITE">
+            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" stylesheets="@../stylesheet/cartStyleSheet.css" text="Zalogowany workers:" textFill="WHITE">
                <font>
                   <Font name="Garamond Bold" size="21.0" />
                </font>
@@ -95,7 +95,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="obecnieZalogowany" alignment="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" stylesheets="@../stylesheet/cartStyleSheet.css" text="-" textAlignment="CENTER" textFill="#fcfbfc">
+            <Label fx:id="currentlyLoggedIn" alignment="CENTER" layoutX="7.0" layoutY="590.0" prefHeight="25.0" prefWidth="214.0" styleClass="bttn" stylesheets="@../stylesheet/cartStyleSheet.css" text="-" textAlignment="CENTER" textFill="#fcfbfc">
                <font>
                   <Font name="Garamond Bold" size="20.0" />
                </font>
@@ -120,12 +120,12 @@
       </AnchorPane>
       <TableView fx:id="cart_table" layoutX="247.0" layoutY="90.0" prefHeight="536.0" prefWidth="700.0" styleClass="tableview" stylesheets="@../stylesheet/cartStyleSheet.css">
         <columns>
-          <TableColumn fx:id="nazwa_col" prefWidth="350.0" text="Nazwa" />
-            <TableColumn fx:id="cena_col" prefWidth="350.0" text="Cena" />
+          <TableColumn fx:id="name_col" prefWidth="350.0" text="Nazwa" />
+            <TableColumn fx:id="price_col" prefWidth="350.0" text="Cena" />
         </columns>
       </TableView>
-      <ChoiceBox fx:id="chooseZamowienie" layoutX="247.0" layoutY="65.0" prefHeight="27.0" prefWidth="700.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" />
-      <TextField fx:id="podsumowanieCeny" alignment="CENTER" editable="false" layoutX="597.0" layoutY="626.0" prefHeight="25.0" prefWidth="350.0" styleClass="txtFieldPodsumowanieCeny" stylesheets="@../stylesheet/cartStyleSheet.css">
+      <ChoiceBox fx:id="chooseOrder" layoutX="247.0" layoutY="65.0" prefHeight="27.0" prefWidth="700.0" styleClass="bttnZrealizuj" stylesheets="@../stylesheet/cartStyleSheet.css" />
+      <TextField fx:id="priceSummary" alignment="CENTER" editable="false" layoutX="597.0" layoutY="626.0" prefHeight="25.0" prefWidth="350.0" styleClass="txtFieldPodsumowanieCeny" stylesheets="@../stylesheet/cartStyleSheet.css">
          <font>
             <Font name="Garamond" size="20.0" />
          </font>

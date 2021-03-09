@@ -19,10 +19,10 @@ public class MainScene_Controller implements Initializable {
         Session session = hibernate_controller.getSession( );
 
         @FXML
-        private Label obecnieZalogowany;
+        private Label currentlyLoggedIn;
 
         @FXML
-        private Label nazwaOddzialu;
+        private Label branchName;
 
         @FXML
         void branchButton ( MouseEvent event ) throws IOException {
@@ -71,12 +71,12 @@ public class MainScene_Controller implements Initializable {
 
         @Override
         public void initialize ( URL location , ResourceBundle resources ) {
-                setObecnieZalogowany();
+                setCurrentlyLoggedIn();
         }
 
-        public void setObecnieZalogowany () {
-                Pracownik temp = session.get( Pracownik.class,LoginScene_Controller.getIdZalogowanegoPracownika() );
-                obecnieZalogowany.setText( LoginScene_Controller.getImietemp() + " " + LoginScene_Controller.getNazwiskotemp() );
-                nazwaOddzialu.setText( temp.getSklep().getMiejscowosc() );
+        public void setCurrentlyLoggedIn() {
+                Workers temp = session.get( Workers.class,LoginScene_Controller.getLoggedInWorkerID() );
+                currentlyLoggedIn.setText( LoginScene_Controller.getNameTemp() + " " + LoginScene_Controller.getSurnameTemp() );
+                branchName.setText( temp.getSklep().getCity() );
         }
 }

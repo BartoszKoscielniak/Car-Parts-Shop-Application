@@ -1,33 +1,18 @@
-CzescSamochodowa.java
- CzescSamochodowa
-Sklep.java
- Sklep
-CurrentWorkerScene_Controller.java
- CurrentWorkerScene_Controller
-MainScene_Controller.java
- MainScene_Controller
 AppFX.java
  AppFX
-Hibernate_Controller.java
- Hibernate_Controller
-Kategoria.java
- Kategoria
-BranchScene_Controller.java
- BranchScene_Controller
- BranchScene_Controller$1
- BranchScene_Controller$1$1
- BranchScene_Controller$2
- BranchScene_Controller$2$1
-Cart_Controller.java
- Cart_Controller
+Category.java
+ Category
+LoginScene_Controller.java
+ LoginScene_Controller
+ LoginScene_Controller$1
+Workers.java
+ Workers
 ShopScene_Controller.java
  ShopScene_Controller
  ShopScene_Controller$1
  ShopScene_Controller$1$1
  ShopScene_Controller$2
  ShopScene_Controller$2$1
-Pracownik.java
- Pracownik
 WorkersScene_Controller.java
  WorkersScene_Controller
  WorkersScene_Controller$1
@@ -36,8 +21,23 @@ WorkersScene_Controller.java
  WorkersScene_Controller$2$1
  WorkersScene_Controller$3
  WorkersScene_Controller$3$1
-Zamowienie.java
- Zamowienie
-LoginScene_Controller.java
- LoginScene_Controller
- LoginScene_Controller$1
+Cart_Controller.java
+ Cart_Controller
+CarParts.java
+ CarParts
+Shop.java
+ Shop
+MainScene_Controller.java
+ MainScene_Controller
+Hibernate_Controller.java
+ Hibernate_Controller
+Order.java
+ Order
+BranchScene_Controller.java
+ BranchScene_Controller
+ BranchScene_Controller$1
+ BranchScene_Controller$1$1
+ BranchScene_Controller$2
+ BranchScene_Controller$2$1
+ManagmentScene_Controller.java
+ ManagmentScene_Controller
