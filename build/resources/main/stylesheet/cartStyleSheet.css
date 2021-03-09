@@ -26,7 +26,6 @@
 
 .tableview{
    -fx-background-color: transparent;
-   /*-fx-box-border:*/
    -fx-border-insets: -1 -1 0 0;
 }
 .table-view .column-header .label{

@@ -82,7 +82,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </padding>
             </Label>
-            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" stylesheets="@../stylesheet/cartStyleSheet.css" text="Zalogowany workers:" textFill="WHITE">
+            <Label fx:id="zalogowanyPracownikTekst" layoutX="6.0" layoutY="564.0" stylesheets="@../stylesheet/cartStyleSheet.css" text="Zalogowany pracownik:" textFill="WHITE">
                <font>
                   <Font name="Garamond Bold" size="21.0" />
                </font>

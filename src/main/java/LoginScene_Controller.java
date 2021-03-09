@@ -25,7 +25,7 @@ public class LoginScene_Controller implements Initializable {
     private static int LoggedInWorkerID;
     private static String nameTemp;
     private static String surnameTemp;
-    private static String employment_data;
+    private static String employment_date;
     private static double telephoneNumberTemp;
     private static double peselTemp;
     private static double earningsTemp;
@@ -88,7 +88,7 @@ public class LoginScene_Controller implements Initializable {
                         LoggedInWorkerID = workersList.get( i ).getId_worker();
                         nameTemp = workersList.get( i ).getName();
                         surnameTemp = workersList.get( i ).getSurname();
-                        employment_data = workersList.get( i ).getDateOfEmployment();
+                        employment_date = workersList.get( i ).getDateOfEmployment();
                         telephoneNumberTemp = workersList.get( i ).getPhoneNumber();
                         peselTemp = workersList.get( i ).getPesel();
                         earningsTemp = workersList.get( i ).getEarings();
@@ -130,8 +130,8 @@ public class LoginScene_Controller implements Initializable {
         return surnameTemp;
     }
 
-    public static String getEmployment_data() {
-        return employment_data;
+    public static String getEmployment_date() {
+        return employment_date;
     }
 
     public static double getTelephoneNumberTemp() {
