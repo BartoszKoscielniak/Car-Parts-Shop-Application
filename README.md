@@ -12,7 +12,7 @@
 * [License](#license)
 
 ## General info
->The project was created by myself as a final paper of subject Object-Oriented Programing(OOP).
+>The project was created by myself as a final paper of subject Object-Oriented Programing(OOP). Project has been realized with JavaFX and Hibernate
 
 ## Screenshots
 
