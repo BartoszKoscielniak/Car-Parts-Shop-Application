@@ -22,7 +22,7 @@
 ## Setup
 
 >Instalation of project is as simple as using it. All you had to do is download it and start with IDE, in my case **IntelliJ**.
-To start application properly you need also to download database server, mine was [MySQL Community Server](https://dev.mysql.com/downloads/mysql/), and properly configure it.
+To start application properly you need also to download database server, mine was [MySQL Community Server](https://dev.mysql.com/downloads/mysql/), and properly configure it.(username: root, password: admin)
 After configuration you need to create database **carpartsshop**.
 Start application twice so it is ready to use.
 
