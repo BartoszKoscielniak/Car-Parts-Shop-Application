@@ -75,6 +75,7 @@ Show examples of usage:
 ## Tech/framework used
 
 * Java 15
+* JavaFX
 * Hibernate 5.4.25.Final
 * CSS
 * MYSQL
